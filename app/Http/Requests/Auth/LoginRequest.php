@@ -3,10 +3,13 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Auth\Events\Lockout;
-use Illuminate\Foundation\Http\FormRequest;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use App\Helpers\ApiResponse;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
@@ -18,6 +21,15 @@ class LoginRequest extends FormRequest
     {
         return true;
     }
+      protected function failedValidation(Validator $validator)
+    {
+        if($this->is('api/*'))
+        {
+            $response = ApiResponse::sendResponse(422, 'Validation Errors ', $validator->errors());
+            throw new ValidationException($validator,$response);
+        }
+    }
+
 
     /**
      * Get the validation rules that apply to the request.
