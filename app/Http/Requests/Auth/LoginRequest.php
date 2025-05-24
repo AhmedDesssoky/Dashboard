@@ -21,7 +21,7 @@ class LoginRequest extends FormRequest
     {
         return true;
     }
-      protected function failedValidation(Validator $validator)
+    protected function failedValidation(Validator $validator)
     {
         if($this->is('api/*'))
         {

@@ -19,7 +19,18 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/admin')->controller(AuthController::class)->group(function(){
     Route::post('/','login');
     Route::post('/logout','logout')->middleware('auth:sanctum');
+    Route::middleware('auth:sanctum')->group(function(){
+        // SERVICES MODULE
+        Route::controller(ServiceController::class)->group(function(){
+            Route::get('/','index');
+            Route::post('/store','store');
+            Route::post('/update/{id}','update');
+            Route::get('/show/{id}','show');
+            Route::get('/delete/{id}','destroy');
 
+        });
+
+    });
 
 });
 
