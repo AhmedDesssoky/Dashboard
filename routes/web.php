@@ -42,7 +42,6 @@ Route::name('admin.')->prefix(LaravelLocalization::setLocale().'/admin')->middle
         });
         // Features
         Route::controller(FeatureController::class)->group(function(){
-
             Route::resource('features', FeatureController::class);
         });
         // Messages

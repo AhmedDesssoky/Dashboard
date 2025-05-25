@@ -40,8 +40,6 @@ class ServiceController extends Controller
             
         }
         return ApiResponse::sendResponse(200,'Services is Empty',[]);
-        
-      
     }
     // Create Service
     public function store(StoreServiceRequest $request){
