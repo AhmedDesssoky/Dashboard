@@ -21,7 +21,7 @@ class FeatureController extends Controller
                     'pagination Links' =>[
                         'Current Link' => $features->currentPage(),
                         'Total Link' => $features->total(),
-                        'Per Page' => $features->total(),
+                        'Per Page' => $features->PerPage(),
                         'links' =>[
                             'First Link' => $features->url(1),
                             'last Link' => $features->url($features->lastPage()),
@@ -33,7 +33,7 @@ class FeatureController extends Controller
 
 
                 ];
-                
+
             }else{
                 $data = FeatureResource::collection($features);
             }
@@ -41,7 +41,7 @@ class FeatureController extends Controller
         }
         return ApiResponse::sendResponse(200,'Features Is Empty',[]);
     }
-    // Create Feature 
+    // Create Feature
     public function store(StoreFeatureRequest $request){
         $data = $request->validated();
         $feature = Feature::create($data);
@@ -49,7 +49,7 @@ class FeatureController extends Controller
             return ApiResponse::sendResponse(201,'Feature Created Success fully',new FeatureResource($feature));
         }
     }
-    // Update Feature by Id 
+    // Update Feature by Id
     public function update(StoreFeatureRequest $request,$id){
         $feature = Feature::findOrFail($id);
         $data = $request->validated();
@@ -66,7 +66,7 @@ class FeatureController extends Controller
         }
         return ApiResponse::sendResponse(404,'Feature Not Found',[]);
     }
-    // Show Feature by Id
+    // Delete Feature by Id
     public function destroy ($id){
         $feature = Feature::find($id);
         if($feature){

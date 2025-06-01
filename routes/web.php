@@ -46,7 +46,6 @@ Route::name('admin.')->prefix(LaravelLocalization::setLocale().'/admin')->middle
         });
         // Messages
         Route::controller(MessageController::class)->group(function(){
-
             Route::resource('messages', MessageController::class)->only(['index','show','destroy']);
         });
         // subscribers
