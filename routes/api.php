@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\SubscriberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,13 +43,22 @@ Route::prefix('/admin')->controller(AuthController::class)->group(function(){
 
         // MESSAGES MODULE
         Route::controller(MessageController::class)->group(function(){
-            Route::get('/messages','index');
+            Route::get('/messages/','index');
             Route::post('/messages/create','store');
             Route::get('/messages/show/{id}','show');
             Route::get('/messages/delete/{id}','destroy');
 
         });
 
+        // SUBSCRIBERS MODULE
+        Route::controller(SubscriberController::class)->group(function(){
+            Route::get('/subscribers/','index');
+            Route::post('/subscribers/create','store');
+            Route::get('/subscribers/show/{id}','show');
+            Route::get('/subscribers/delete/{id}','destroy');
+
+
+        });
 
     });
 

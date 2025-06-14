@@ -56,7 +56,7 @@ Route::name('admin.')->prefix(LaravelLocalization::setLocale().'/admin')->middle
         // Testimonials
         Route::controller(TestimonialController::class)->group(function(){
 
-            Route::resource('testimonials', TestimonialController::class);
+            Route::resource('testimonials', TestimonialController::class); 
         });
         // Companies
         Route::controller(CompanyController::class)->group(function(){
